@@ -1,7 +1,6 @@
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
 import { styles } from "./styles";
 import { AddTaskInput } from "../../components/AddTaskInput";
-import { useState } from "react";
 import { TaskContextProvider } from "../../context/task-context";
 import { TaskList } from "../../components/TaskList";
 

@@ -3,6 +3,7 @@ import { useTaskContext } from "../../hooks/use-task-context";
 import { TaskItem } from "../TaskItem";
 import { styles } from "./styles";
 import { Counter } from "../Counter";
+import { EmptyList } from "../EmptyList";
 
 export function TaskList() {
   const { taskList } = useTaskContext();
@@ -22,6 +23,7 @@ export function TaskList() {
         data={taskList}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <TaskItem data={item} />}
+        ListEmptyComponent={EmptyList}
       />
     </View>
   );

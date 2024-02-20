@@ -33,13 +33,15 @@ export function TaskContextProvider({
   };
 
   const handleAddTask = useCallback(() => {
-    const task: TaskType = {
-      id: uuid.v4() as string,
-      text: taskText,
-      isCompleted: false,
-    };
-    setTaskList((oldState) => [...oldState, task]);
-    setTaskText("");
+    if (taskText) {
+      const task: TaskType = {
+        id: uuid.v4() as string,
+        text: taskText,
+        isCompleted: false,
+      };
+      setTaskList((oldState) => [...oldState, task]);
+      setTaskText("");
+    }
   }, [taskText]);
 
   const handleRemoveTask = (id: string) => {
