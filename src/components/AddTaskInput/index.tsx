@@ -1,23 +1,20 @@
 import { Image, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import { useState } from "react";
+import { useTaskContext } from "../../hooks/use-task-context";
 
-type AddTaskInputProps = {
-  value: string;
-  onChangeText: (task: string) => void;
-};
-
-export function AddTaskInput({ value, onChangeText }: AddTaskInputProps) {
+export function AddTaskInput() {
   const [focus, setFocus] = useState(false);
+  const { taskText, handleChangeTaskText } = useTaskContext();
 
   return (
     <View style={styles.inputContainer}>
       <TextInput
         style={focus ? styles.textInputFocus : styles.textInput}
-        value={value}
+        value={taskText}
         placeholder={"Adicione uma nova tarefa"}
         placeholderTextColor={"#808080"}
-        onChangeText={onChangeText}
+        onChangeText={handleChangeTaskText}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
       />
