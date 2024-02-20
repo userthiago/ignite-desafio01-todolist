@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
     height: 32,
   },
   contentContainer: {
+    flex: 1,
     padding: 24,
   },
 });

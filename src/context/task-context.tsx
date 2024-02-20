@@ -59,15 +59,13 @@ export function TaskContextProvider({
 
   const handleChangeTaskStatus = useCallback(
     (id: string) => {
-      const newTask = taskList.find((task) => task.id === id);
-      if (newTask) {
-        setTaskList((oldState) => [
-          ...oldState.filter((task) => task.id !== id),
-          {
-            ...newTask,
-            isCompleted: !newTask.isCompleted,
-          },
-        ]);
+      const taskIndex = taskList.findIndex((task) => task.id === id);
+      if (taskIndex >= 0) {
+        const newTaskList = [...taskList];
+        newTaskList[taskIndex].isCompleted =
+          !newTaskList[taskIndex].isCompleted;
+
+        setTaskList(newTaskList);
       }
     },
     [taskList]

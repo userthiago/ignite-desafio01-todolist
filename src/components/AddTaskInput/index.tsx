@@ -5,7 +5,7 @@ import { useTaskContext } from "../../hooks/use-task-context";
 
 export function AddTaskInput() {
   const [focus, setFocus] = useState(false);
-  const { taskText, handleChangeTaskText } = useTaskContext();
+  const { taskText, handleChangeTaskText, handleAddTask } = useTaskContext();
 
   return (
     <View style={styles.inputContainer}>
@@ -18,7 +18,11 @@ export function AddTaskInput() {
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
       />
-      <TouchableOpacity style={styles.addButton} activeOpacity={0.7}>
+      <TouchableOpacity
+        style={styles.addButton}
+        activeOpacity={0.7}
+        onPress={handleAddTask}
+      >
         <Image source={require("../../../assets/icons/plus-icon.png")} />
       </TouchableOpacity>
     </View>
