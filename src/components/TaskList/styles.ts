@@ -8,4 +8,11 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     gap: 8,
   },
+  counterGroup: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+
+    marginTop: 32,
+  },
 });
