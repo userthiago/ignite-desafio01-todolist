@@ -32,16 +32,50 @@ export function TaskContextProvider({
     setTaskText(text);
   };
 
+  const cleanTaskText = () => {
+    setTaskText("");
+  };
+
   const handleAddTask = useCallback(() => {
-    if (taskText) {
+    if (!taskText) {
+      return;
+    }
+
+    const trimmedText = taskText.replace(/\s+/g, " ").trim();
+    Keyboard.dismiss();
+
+    const addTask = () => {
       const task: TaskType = {
         id: uuid.v4() as string,
-        text: taskText,
+        text: trimmedText,
         isCompleted: false,
       };
       setTaskList((oldState) => [...oldState, task]);
-      setTaskText("");
-      Keyboard.dismiss();
+      cleanTaskText();
+    };
+
+    const isTaskRepeated = taskList.some(
+      (task) => task.text.toLowerCase() === trimmedText.toLowerCase()
+    );
+
+    if (isTaskRepeated) {
+      Alert.alert(
+        "Tarefa repetida",
+        `Já existe uma tarefa de "${trimmedText.toLowerCase()}" cadastrada.\nDeseja cadastrar novamente?`,
+        [
+          {
+            text: "Sim",
+            onPress: addTask,
+          },
+          {
+            text: "Não",
+            style: "cancel",
+            onPress: cleanTaskText,
+          },
+        ]
+      );
+    } else {
+      addTask();
     }
   }, [taskText]);
 
