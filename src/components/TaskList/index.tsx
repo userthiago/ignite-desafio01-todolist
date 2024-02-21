@@ -24,6 +24,7 @@ export function TaskList() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <TaskItem data={item} />}
         ListEmptyComponent={EmptyList}
+        scrollEnabled={taskList.length > 0}
       />
     </View>
   );
