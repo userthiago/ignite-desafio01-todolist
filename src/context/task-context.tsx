@@ -2,7 +2,7 @@ import { createContext, useCallback, useMemo, useState } from "react";
 import uuid from "react-native-uuid";
 
 import { TaskType } from "../types/task-type";
-import { Alert } from "react-native";
+import { Alert, Keyboard } from "react-native";
 
 export interface TaskContextData {
   taskText: string;
@@ -41,6 +41,7 @@ export function TaskContextProvider({
       };
       setTaskList((oldState) => [...oldState, task]);
       setTaskText("");
+      Keyboard.dismiss();
     }
   }, [taskText]);
 
