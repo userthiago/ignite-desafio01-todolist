@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   list: {
-    marginTop: 20,
     gap: 8,
   },
   counterGroup: {
@@ -14,5 +13,6 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
 
     marginTop: 32,
+    marginBottom: 20,
   },
 });
