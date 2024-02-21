@@ -46,18 +46,27 @@ export function TaskContextProvider({
   }, [taskText]);
 
   const handleRemoveTask = (id: string) => {
-    Alert.alert("Remover tarefa", "Tem certeza que quer remover esta tarefa?", [
-      {
-        text: "Sim",
-        onPress: () => {
-          setTaskList((oldState) => oldState.filter((task) => task.id !== id));
-        },
-      },
-      {
-        text: "Não",
-        style: "cancel",
-      },
-    ]);
+    const taskData = taskList.find((task) => task.id === id);
+    if (taskData) {
+      Alert.alert(
+        "Remover tarefa",
+        `Tem certeza que deseja a tarefa "${taskData.text}" ?`,
+        [
+          {
+            text: "Sim",
+            onPress: () => {
+              setTaskList((oldState) =>
+                oldState.filter((task) => task.id !== id)
+              );
+            },
+          },
+          {
+            text: "Não",
+            style: "cancel",
+          },
+        ]
+      );
+    }
   };
 
   const handleChangeTaskStatus = useCallback(
